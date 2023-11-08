@@ -46,6 +46,9 @@ jobs:
         if: steps.build_3.outcome == 'failure'
         run: ./gradlew build
 
+      - name: Set outputs
+        id: short_sha
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
       - name: Publish Release
         uses: softprops/action-gh-release@v1
         with:
